@@ -8,17 +8,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
 
-const Schema = yup.object().shape({
+const schema = yup.object().shape({
   name: yup.string().min(2).required(),
   number: yup.string().length(7).required(),
 });
 
 export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
-
+  
   normalizedNumber = str => {
     const normalizedNumber =
       str[0] + str[1] + str[2] + '-' + str[3] + str[4] + '-' + str[5] + str[6];
@@ -39,8 +35,6 @@ export class ContactForm extends Component {
       name: this.normalizedName(values.name),
       number: this.normalizedNumber(values.number),
     };
-
-    console.log(newName);
     this.props.onSubmit(newName);
     resetForm();
   };
@@ -48,9 +42,9 @@ export class ContactForm extends Component {
   render() {
     return (
       <Formik
-        initialValues={this.state}
+        initialValues={{name: '', number: '',}}
         onSubmit={this.handleSubmit}
-        validationSchema={Schema}
+        validationSchema={schema}
       >
         {props => (
           <Form>
