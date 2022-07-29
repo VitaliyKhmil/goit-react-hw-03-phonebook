@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ContainerDiv, Title } from 'components/Common/ContainerDiv';
+import { Container, Title } from 'components/ui/Container';
 import { ContactForm } from 'components/ContactsForm/ContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import { ContactsFilter } from 'components/ContactsFilter/ContactsFilter';
@@ -70,7 +70,7 @@ export class App extends Component {
 
   render() {
     return (
-      <ContainerDiv>
+      <Container>
         <Title>Phonebook</Title>
 
         <ContactForm onSubmit={this.handlerSubmit} />
@@ -87,7 +87,7 @@ export class App extends Component {
           options={this.state.contacts}
           onClickDelete={this.deleteContact}
         />
-      </ContainerDiv>
+      </Container>
     );
   }
 }
